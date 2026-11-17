@@ -56,8 +56,7 @@ const submit = () => {
             <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-16 rounded-xl border border-slate-200 bg-slate-50 p-1.5 flex items-center justify-center shrink-0 shadow-2xs">
-                        <img v-if="logoPreview" :src="logoPreview" alt="Logo Sekolah" class="w-full h-full object-contain" />
-                        <i v-else class="fa-solid fa-school text-slate-400 text-2xl"></i>
+                        <img src="/images/logo.png" alt="Logo Sekolah" class="w-full h-full object-contain" />
                     </div>
                     <div>
                         <div class="flex items-center gap-2 flex-wrap">
@@ -106,20 +105,7 @@ const submit = () => {
                         <!-- Logo Upload Row -->
                         <div class="p-4 rounded-lg border border-slate-200 bg-slate-50 flex flex-col sm:flex-row items-center gap-5">
                             <div class="w-20 h-20 rounded-xl bg-white border border-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-2xs p-2">
-                                <img v-if="logoPreview" :src="logoPreview" alt="Logo Sekolah" class="w-full h-full object-contain" />
-                                <i v-else class="fa-solid fa-school text-2xl text-slate-300"></i>
-                            </div>
-                            <div class="flex-1 space-y-1 text-center sm:text-left">
-                                <label class="block text-xs font-semibold text-slate-900">Lambang / Logo Resmi Sekolah</label>
-                                <p class="text-[11px] text-slate-500">Format PNG transparan atau JPG (Maks. 2MB). Lambang akan dicetak pada kepala surat rapor dan portal publik.</p>
-                                <div class="pt-1">
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        @change="onFileChange"
-                                        class="text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border file:border-slate-300 file:text-xs file:font-semibold file:bg-white file:text-slate-800 hover:file:bg-slate-50 file:cursor-pointer cursor-pointer"
-                                    />
-                                </div>
+                               <img src="/images/logo-sekolah.png" alt="Logo Sekolah" class="w-full h-full object-contain" />
                             </div>
                         </div>
 
