@@ -100,3 +100,15 @@ Route::middleware(['auth', \App\Http\Middleware\EnsurePageAccess::class])->group
     Route::get('profil-sekolah', [ProfilSekolahController::class, 'index'])->name('profil-sekolah.index');
     Route::put('profil-sekolah', [ProfilSekolahController::class, 'update'])->name('profil-sekolah.update');
 });
+
+Route::get('/setup-database-vercel', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true
+        ]);
+        return 'Sukses! Database berhasil dibangun ulang dengan struktur AUTO_INCREMENT yang benar.';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
