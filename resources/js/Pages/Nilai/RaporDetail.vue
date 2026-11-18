@@ -119,7 +119,8 @@ const print = () => {
                         <!-- Logo Kiri -->
                         <div class="w-20 h-20 flex items-center justify-center shrink-0">
                             <img
-                                src="/storage/sekolah/logo.png"
+                                v-if="profil.logo_kiri"
+                                :src="profil.logo_kiri?.startsWith('http') ? profil.logo_kiri : '/storage/' + profil.logo_kiri"
                                 alt="Logo Instansi"
                                 class="max-h-20 max-w-20 object-contain"
                             />
@@ -149,7 +150,8 @@ const print = () => {
                         <!-- Logo Kanan -->
                         <div class="w-20 h-20 flex items-center justify-center shrink-0">
                             <img
-                                src="/storage/sekolah/logo-sekolah.png"
+                                v-if="profil.logo"
+                                :src="profil.logo?.startsWith('http') ? profil.logo : '/storage/' + profil.logo"
                                 alt="Logo Sekolah"
                                 class="max-h-20 max-w-20 object-contain"
                             />
