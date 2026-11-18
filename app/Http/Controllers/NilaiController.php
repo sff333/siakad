@@ -11,6 +11,7 @@ use App\Models\PengaturanPredikat;
 use App\Models\ProfilSekolah;
 use App\Models\Siswa;
 use App\Models\TahunAjaran;
+use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -279,17 +280,19 @@ class NilaiController extends Controller
         $profil = ProfilSekolah::firstOrCreate(['id' => 1]);
 
         if ($request->hasFile('logo')) {
-            if ($profil->logo) {
-                Storage::disk('public')->delete($profil->logo);
-            }
-            $validated['logo'] = $request->file('logo')->store('sekolah', 'public');
+            $cloudinary = new Cloudinary(config('services.cloudinary.url'));
+            $upload = $cloudinary->uploadApi()->upload($request->file('logo')->getRealPath(), [
+                'folder' => 'sekolah',
+            ]);
+            $validated['logo'] = $upload['secure_url'];
         }
 
         if ($request->hasFile('logo_kiri')) {
-            if ($profil->logo_kiri) {
-                Storage::disk('public')->delete($profil->logo_kiri);
-            }
-            $validated['logo_kiri'] = $request->file('logo_kiri')->store('sekolah', 'public');
+            $cloudinary = new Cloudinary(config('services.cloudinary.url'));
+            $upload = $cloudinary->uploadApi()->upload($request->file('logo_kiri')->getRealPath(), [
+                'folder' => 'sekolah',
+            ]);
+            $validated['logo_kiri'] = $upload['secure_url'];
         }
 
         $profil->update($validated);

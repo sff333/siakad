@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProfilSekolah;
+use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -43,19 +44,19 @@ class ProfilSekolahController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            $profil = ProfilSekolah::first();
-            if ($profil && $profil->logo) {
-                Storage::disk('public')->delete($profil->logo);
-            }
-            $validated['logo'] = $request->file('logo')->store('sekolah', 'public');
+            $cloudinary = new Cloudinary(config('services.cloudinary.url'));
+            $upload = $cloudinary->uploadApi()->upload($request->file('logo')->getRealPath(), [
+                'folder' => 'sekolah',
+            ]);
+            $validated['logo'] = $upload['secure_url'];
         }
 
         if ($request->hasFile('logo_kiri')) {
-            $profil = ProfilSekolah::first();
-            if ($profil && $profil->logo_kiri) {
-                Storage::disk('public')->delete($profil->logo_kiri);
-            }
-            $validated['logo_kiri'] = $request->file('logo_kiri')->store('sekolah', 'public');
+            $cloudinary = new Cloudinary(config('services.cloudinary.url'));
+            $upload = $cloudinary->uploadApi()->upload($request->file('logo_kiri')->getRealPath(), [
+                'folder' => 'sekolah',
+            ]);
+            $validated['logo_kiri'] = $upload['secure_url'];
         }
 
         ProfilSekolah::updateOrCreate(['id' => 1], $validated);

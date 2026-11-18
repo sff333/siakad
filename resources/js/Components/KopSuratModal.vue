@@ -61,8 +61,8 @@ const populateForm = () => {
     form.tipe_garis_kop = p.tipe_garis_kop || 'ganda';
     form.logo = null;
     form.logo_kiri = null;
-    logoPreview.value = p.logo ? `/storage/${p.logo}` : null;
-    logoKiriPreview.value = p.logo_kiri ? `/storage/${p.logo_kiri}` : null;
+    logoPreview.value = p.logo ? (p.logo.startsWith('http') ? p.logo : `/storage/${p.logo}`) : null;
+    logoKiriPreview.value = p.logo_kiri ? (p.logo_kiri.startsWith('http') ? p.logo_kiri : `/storage/${p.logo_kiri}`) : null;
 };
 
 watch(() => props.show, (newVal) => {
