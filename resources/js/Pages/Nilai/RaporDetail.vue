@@ -120,7 +120,7 @@ const print = () => {
                         <div v-if="profil.logo_kiri || profil.logo" class="w-20 h-20 flex items-center justify-center shrink-0">
                             <img
                                 v-if="profil.logo_kiri"
-                                :src="'storage/sekolah/logo.png' + profil.logo_kiri"
+                                src="/storage/sekolah/logo.png"
                                 alt="Logo Instansi"
                                 class="max-h-20 max-w-20 object-contain"
                             />
@@ -151,7 +151,7 @@ const print = () => {
                         <div v-if="profil.logo_kiri || profil.logo" class="w-20 h-20 flex items-center justify-center shrink-0">
                             <img
                                 v-if="profil.logo"
-                                :src="'/storage/sekolah/logo-sekolah.png' + profil.logo"
+                                src="/storage/sekolah/logo-sekolah.png"
                                 alt="Logo Sekolah"
                                 class="max-h-20 max-w-20 object-contain"
                             />
